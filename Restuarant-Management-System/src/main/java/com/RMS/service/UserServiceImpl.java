@@ -5,6 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.RMS.model.UserDtls;
 import com.RMS.repository.UserRepository_INTERFACE;
@@ -21,6 +22,7 @@ public class UserServiceImpl implements UserService {
 	private BCryptPasswordEncoder passwordEncode;
 
 	@Override
+	@Transactional
 	public UserDtls createUser(UserDtls user) {
         System.out.print(user);
 		user.setPassword(passwordEncode.encode(user.getPassword()));
